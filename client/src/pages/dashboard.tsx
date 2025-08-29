@@ -2,11 +2,16 @@ import { UserCheck, Dices, Swords, ScrollText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CharacterSheet } from "@/components/character-sheet";
 import { DiceRoller } from "@/components/dice-roller";
-import { InitiativeTracker } from "@/components/initiative-tracker";
+import { EnhancedInitiativeTracker } from "@/components/enhanced-initiative-tracker";
 import { SpellLookup } from "@/components/spell-lookup";
 import { Notes } from "@/components/notes";
+import { User } from "@shared/schema";
 
-export default function Dashboard() {
+interface DashboardProps {
+  user?: User | null;
+}
+
+export default function Dashboard({ user }: DashboardProps = {}) {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -62,7 +67,7 @@ export default function Dashboard() {
 
         {/* Right Column */}
         <div className="space-y-8">
-          <InitiativeTracker />
+          <EnhancedInitiativeTracker user={user} />
           <SpellLookup />
           <Notes />
         </div>

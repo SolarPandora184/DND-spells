@@ -1,12 +1,15 @@
-import { Moon, Sun, Menu, Swords } from "lucide-react";
+import { Moon, Sun, Menu, Swords, User, LogOut, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
+import { User as UserType } from "@shared/schema";
 
 interface HeaderProps {
   onMobileMenuToggle?: () => void;
+  user?: UserType | null;
+  onLogout?: () => void;
 }
 
-export function Header({ onMobileMenuToggle }: HeaderProps) {
+export function Header({ onMobileMenuToggle, user, onLogout }: HeaderProps) {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -59,6 +62,24 @@ export function Header({ onMobileMenuToggle }: HeaderProps) {
           </nav>
 
           <div className="flex items-center space-x-4">
+            {user && (
+              <div className="hidden md:flex items-center space-x-2 text-sm">
+                <div className="flex items-center space-x-2 bg-muted rounded-md px-3 py-1">
+                  {user.role === "dm" ? (
+                    <Shield className="h-4 w-4 text-primary" />
+                  ) : (
+                    <User className="h-4 w-4" />
+                  )}
+                  <span className="font-medium" data-testid="user-name">
+                    {user.characterName}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    ({user.role === "dm" ? "DM" : "Player"})
+                  </span>
+                </div>
+              </div>
+            )}
+            
             <Button
               variant="outline"
               size="icon"
@@ -72,6 +93,20 @@ export function Header({ onMobileMenuToggle }: HeaderProps) {
               )}
               <span className="sr-only">Toggle theme</span>
             </Button>
+
+            {user && onLogout && (
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={onLogout}
+                data-testid="button-logout"
+                title="Logout"
+              >
+                <LogOut className="h-[1.2rem] w-[1.2rem]" />
+                <span className="sr-only">Logout</span>
+              </Button>
+            )}
+            
             <Button
               variant="outline"
               size="icon"
