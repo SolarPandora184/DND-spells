@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 8px;
+  /* Light mode */
+  --background: hsl(35, 20%, 96%);
+  --foreground: hsl(25, 15%, 15%);
+  --card: hsl(35, 15%, 92%);
+  --card-foreground: hsl(25, 15%, 15%);
+  --popover: hsl(35, 15%, 92%);
+  --popover-foreground: hsl(25, 15%, 15%);
+  --primary: hsl(345, 70%, 35%);
+  --primary-foreground: hsl(35, 20%, 96%);
+  --secondary: hsl(45, 85%, 45%);
+  --secondary-foreground: hsl(25, 15%, 15%);
+  --muted: hsl(35, 10%, 85%);
+  --muted-foreground: hsl(25, 10%, 45%);
+  --accent: hsl(45, 85%, 45%);
+  --accent-foreground: hsl(25, 15%, 15%);
+  --destructive: hsl(0, 75%, 55%);
+  --destructive-foreground: hsl(35, 20%, 96%);
+  --border: hsl(35, 15%, 80%);
+  --input: hsl(35, 15%, 88%);
+  --ring: hsl(345, 70%, 35%);
+
+  /* Chart colors */
+  --chart-1: hsl(203.8863, 88.2845%, 53.1373%);
+  --chart-2: hsl(159.7826, 100%, 36.0784%);
+  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
+  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
+  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
+
+  /* Sidebar colors */
+  --sidebar: hsl(35, 15%, 92%);
+  --sidebar-foreground: hsl(25, 15%, 15%);
+  --sidebar-primary: hsl(345, 70%, 35%);
+  --sidebar-primary-foreground: hsl(35, 20%, 96%);
+  --sidebar-accent: hsl(45, 85%, 45%);
+  --sidebar-accent-foreground: hsl(25, 15%, 15%);
+  --sidebar-border: hsl(35, 15%, 80%);
+  --sidebar-ring: hsl(345, 70%, 35%);
+
+  /* Font families */
+  --font-fantasy: 'Cinzel Decorative', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Shadow definitions */
+  --shadow-2xs: 0px 2px 0px 0px hsl(345, 70%, 35%, 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(345, 70%, 35%, 0);
+  --shadow-sm: 0px 2px 0px 0px hsl(345, 70%, 35%, 0), 0px 1px 2px -1px hsl(345, 70%, 35%, 0);
+  --shadow: 0px 2px 0px 0px hsl(345, 70%, 35%, 0), 0px 1px 2px -1px hsl(345, 70%, 35%, 0);
+  --shadow-md: 0px 2px 0px 0px hsl(345, 70%, 35%, 0), 0px 2px 4px -1px hsl(345, 70%, 35%, 0);
+  --shadow-lg: 0px 2px 0px 0px hsl(345, 70%, 35%, 0), 0px 4px 6px -1px hsl(345, 70%, 35%, 0);
+  --shadow-xl: 0px 2px 0px 0px hsl(345, 70%, 35%, 0), 0px 8px 10px -1px hsl(345, 70%, 35%, 0);
+  --shadow-2xl: 0px 2px 0px 0px hsl(345, 70%, 35%, 0);
+
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(25, 15%, 8%);
+  --foreground: hsl(35, 20%, 92%);
+  --card: hsl(25, 15%, 12%);
+  --card-foreground: hsl(35, 20%, 92%);
+  --popover: hsl(25, 15%, 12%);
+  --popover-foreground: hsl(35, 20%, 92%);
+  --primary: hsl(345, 65%, 45%);
+  --primary-foreground: hsl(35, 20%, 96%);
+  --secondary: hsl(45, 75%, 55%);
+  --secondary-foreground: hsl(25, 15%, 8%);
+  --muted: hsl(25, 10%, 18%);
+  --muted-foreground: hsl(35, 10%, 65%);
+  --accent: hsl(45, 75%, 55%);
+  --accent-foreground: hsl(25, 15%, 8%);
+  --destructive: hsl(0, 70%, 60%);
+  --destructive-foreground: hsl(35, 20%, 96%);
+  --border: hsl(25, 15%, 20%);
+  --input: hsl(25, 15%, 16%);
+  --ring: hsl(345, 65%, 45%);
+
+  /* Sidebar colors for dark mode */
+  --sidebar: hsl(25, 15%, 12%);
+  --sidebar-foreground: hsl(35, 20%, 92%);
+  --sidebar-primary: hsl(345, 65%, 45%);
+  --sidebar-primary-foreground: hsl(35, 20%, 96%);
+  --sidebar-accent: hsl(45, 75%, 55%);
+  --sidebar-accent-foreground: hsl(25, 15%, 8%);
+  --sidebar-border: hsl(25, 15%, 20%);
+  --sidebar-ring: hsl(345, 65%, 45%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .dice-face {
+    background: linear-gradient(135deg, #f7f3e9 0%, #e8dcc0 100%);
+    border: 2px solid #8b5a2b;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .dark .dice-face {
+    background: linear-gradient(135deg, rgba(247, 243, 233, 0.1) 0%, rgba(232, 220, 192, 0.15) 100%);
+    border: 2px solid rgba(139, 90, 43, 0.6);
+  }
+
+  .fantasy-border {
+    border-image: linear-gradient(45deg, #8b5a2b, #d4af37, #8b5a2b) 1;
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  .parchment-bg {
+    background: linear-gradient(45deg, #f7f3e9 0%, #ede4d3 50%, #e8dcc0 100%);
+  }
+
+  .dark .parchment-bg {
+    background: linear-gradient(45deg, rgba(247, 243, 233, 0.05) 0%, rgba(237, 228, 211, 0.08) 50%, rgba(232, 220, 192, 0.1) 100%);
+  }
+
+  .glow-effect {
+    transition: all 0.3s ease;
+  }
+
+  .glow-effect:hover {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  }
+
+  .stat-block {
+    background: linear-gradient(135deg, rgba(247, 243, 233, 0.1) 0%, rgba(232, 220, 192, 0.1) 100%);
+    border: 1px solid rgba(139, 90, 43, 0.3);
+  }
+
+  .dark .stat-block {
+    background: linear-gradient(135deg, rgba(247, 243, 233, 0.05) 0%, rgba(232, 220, 192, 0.08) 100%);
+    border: 1px solid rgba(139, 90, 43, 0.4);
+  }
+
+  .font-fantasy {
+    font-family: var(--font-fantasy);
+  }
+}
